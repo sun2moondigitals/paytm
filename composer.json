@@ -1,0 +1,23 @@
+{
+    "name": "sun2moondigitals/paytm",
+    "description": "",
+    "authors": [
+        {
+            "name": "Servebaba",
+            "email": "servebaba1@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "4.2.*"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations"
+        ],
+        "psr-0": {
+            "Sun2moondigitals\\Paytm\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
