@@ -36,7 +36,7 @@ class Paytm {
      * @author     lakshmajim <lakshmajee88@gmail.com>
      * @since      Method available since Release 1.0.0
      */
-	public static function goToWallet() {
+	public static function goToWallet($data) {
 		// Fetch the configuration details from config file
 		$PAYTM_MERCHANT_MID     = Config::get('paytm::paytm.PAYTM_MERCHANT_MID');
 		$PAYTM_MERCHANT_WEBSITE = Config::get('paytm::paytm.PAYTM_MERCHANT_WEBSITE'); 
@@ -51,19 +51,16 @@ class Paytm {
 		// Basic order information
 		$checkSum         = "";
 		$paramList        = array();
-		$ORDER_ID         = "orderid123456";
-		$CUST_ID          = "customerid123456";
 		$INDUSTRY_TYPE_ID = "Retail";
 		$CHANNEL_ID       = "WEB";
-		$TXN_AMOUNT       = 2;
 
 		// Create an array having all required parameters for creating checksum.
 		$paramList["MID"]              = $PAYTM_MERCHANT_MID;
-		$paramList["ORDER_ID"]         = "ITSME" . rand(10000,99999999);
-		$paramList["CUST_ID"]          = $CUST_ID;
+		$paramList["ORDER_ID"]         = $data['order_id'];
+		$paramList["CUST_ID"]          = $data['customer_id'];
 		$paramList["INDUSTRY_TYPE_ID"] = $INDUSTRY_TYPE_ID;
 		$paramList["CHANNEL_ID"]       = $CHANNEL_ID;
-		$paramList["TXN_AMOUNT"]       = $TXN_AMOUNT;
+		$paramList["TXN_AMOUNT"]       = $data['amount'];
 		$paramList["WEBSITE"]          = $PAYTM_MERCHANT_WEBSITE;
 
 		// Compute checksum
