@@ -72,6 +72,56 @@ class Paytm {
 
 
 	/**
+     * Return checksum
+     *
+     * Computes and returns checksum
+     * This method will fetchs the configuration details from 
+     * config.php file
+     * 
+     * @access     public
+     * @param      $env     defines the type of environment to be used (TEST or PROD) 
+     * @param      $type    defines the type of resourec URI to be requested
+     * @return     string
+     * @version    1.0.0
+     * @author     lakshmajim <lakshmajee88@gmail.com>
+     * @since      Method available since Release 1.0.0
+     */
+	public static function goToWallet($data) {
+		// Fetch the configuration details from config file
+		$PAYTM_MERCHANT_MID     = Config::get('paytm::paytm.PAYTM_MERCHANT_MID');
+		$PAYTM_MERCHANT_WEBSITE = Config::get('paytm::paytm.PAYTM_MERCHANT_WEBSITE'); 
+		$PAYTM_MERCHANT_KEY     = Config::get('paytm::paytm.PAYTM_MERCHANT_KEY');
+		$PAYTM_ENVIRONMENT      = Config::get('paytm::paytm.PAYTM_ENVIRONMENT');
+
+		// Request type of URI based on the requirement
+		// following are the available resources
+		// TXN, REFUND, STATUS
+		$url = self::getServiceUrl($PAYTM_ENVIRONMENT, 'TXN');
+
+		// Basic order information
+		$checkSum         = "";
+		$paramList        = array();
+		$INDUSTRY_TYPE_ID = "Retail";
+		$CHANNEL_ID       = "WEB";
+
+		// Create an array having all required parameters for creating checksum.
+		$paramList["MID"]              = $PAYTM_MERCHANT_MID;
+		$paramList["ORDER_ID"]         = $data['order_id'];
+		$paramList["CUST_ID"]          = $data['customer_id'];
+		$paramList["INDUSTRY_TYPE_ID"] = $INDUSTRY_TYPE_ID;
+		$paramList["CHANNEL_ID"]       = $CHANNEL_ID;
+		$paramList["TXN_AMOUNT"]       = $data['amount'];
+		$paramList["WEBSITE"]          = $PAYTM_MERCHANT_WEBSITE;
+
+		// Compute checksum
+		$checkSum = getChecksumFromArray($paramList,$PAYTM_MERCHANT_KEY);
+		return json_encode(['encs' => $checksum]);
+	}
+
+	// ------------------------------------------------------------------------
+
+
+	/**
      * Returns the paytm service url
      *
      * Returns the url for requesting paytm to process payments
