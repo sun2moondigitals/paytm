@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Facade;
  *
  * @author     lakshmaji <lakshmajee88@gmail.com>
  * @package    Paytm
- * @version    1.0.0
+ * @version    1.0.2
  * @since      Class available since Release 1.0.0
  */ 
 class Paytm extends Facade {

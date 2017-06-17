@@ -15,7 +15,7 @@ require_once("lib/encdec_paytm.php");
  *
  * @author     lakshmaji <lakshmajee88@gmail.com>
  * @package    Paytm
- * @version    1.0.0
+ * @version    1.0.2
  * @since      Class available since Release 1.0.0
  */
 class Paytm {
@@ -32,7 +32,7 @@ class Paytm {
      * @param      $env     defines the type of environment to be used (TEST or PROD) 
      * @param      $type    defines the type of resourec URI to be requested
      * @return     string
-     * @version    1.0.0
+     * @version    1.0.2
      * @author     lakshmajim <lakshmajee88@gmail.com>
      * @since      Method available since Release 1.0.0
      */
@@ -82,11 +82,11 @@ class Paytm {
      * @param      $env     defines the type of environment to be used (TEST or PROD) 
      * @param      $type    defines the type of resourec URI to be requested
      * @return     string
-     * @version    1.0.0
+     * @version    1.0.2
      * @author     lakshmajim <lakshmajee88@gmail.com>
-     * @since      Method available since Release 1.0.0
+     * @since      Method available since Release 1.0.2
      */
-	public static function goToWallet($data) {
+	public static function checksum($data) {
 		// Fetch the configuration details from config file
 		$PAYTM_MERCHANT_MID     = Config::get('paytm::paytm.PAYTM_MERCHANT_MID');
 		$PAYTM_MERCHANT_WEBSITE = Config::get('paytm::paytm.PAYTM_MERCHANT_WEBSITE'); 
@@ -131,7 +131,7 @@ class Paytm {
      * @param      $env     defines the type of environment to be used (TEST or PROD) 
      * @param      $type    defines the type of resourec URI to be requested
      * @return     string
-     * @version    1.0.0
+     * @version    1.0.2
      * @author     lakshmajim <lakshmajee88@gmail.com>
      * @since      Method available since Release 1.0.0
      */
