@@ -115,7 +115,7 @@ class Paytm {
 
 		// Compute checksum
 		$checkSum = getChecksumFromArray($paramList,$PAYTM_MERCHANT_KEY);
-		return json_encode(['encs' => $checksum]);
+		return json_encode(['encs' => $checkSum]);
 	}
 
 	// ------------------------------------------------------------------------
